@@ -54,8 +54,49 @@ class PartTimeEmployee extends Employee
         return hoursWorked* hourlyRate;
     }
 }
+
+class PayRollSystem
+{
+    private ArrayList<Employee> employeeList;
+
+    public PayRollSystem(){
+        employeeList = new ArrayList<>();
+    }
+
+    public void addEmployee(Employee employee){
+        employeeList.add(employee);
+    }
+    public void removeEmployee(int id){
+        Employee employeeToRemove = null;
+        for(Employee employee : employeeList){
+            if(employee.getid() == id){
+                employeeToRemove = employee;
+                break;
+            }
+        }
+        if(employeeToRemove != null){
+            employeeList.remove(employeeToRemove);
+        }
+    }
+
+    public void displayEmployee(){
+        for(Employee employee : employeeList){
+            System.out.println(employee.toString());
+        }
+    }
+}
 public class Main{
     public static void main(String[] args) {
-        
+        PayRollSystem payrollSys = new PayRollSystem();
+        FullTimeEmployee emp1 = new FullTimeEmployee("Anurag", 1, 45000.59);
+        PartTimeEmployee emp2 = new PartTimeEmployee("Vaibhav", 2, 8*25, 200);
+        payrollSys.addEmployee(emp1);
+        payrollSys.addEmployee(emp2);
+        System.out.println("Initail Employee Details!!!");
+        payrollSys.displayEmployee();
+        System.out.println("Remaining Employee Details!!!");
+        payrollSys.removeEmployee(2);
+        payrollSys.displayEmployee();
+
     }
 }
